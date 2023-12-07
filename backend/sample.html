@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Invoice</title>
+        <style>
+            div {
+                font-family: 'Times New Roman', Times, serif;
+                font-weight: 500;
+                font-size: 130%;
+            }
+
+            table {
+                border-collapse: collapse;
+                /* border-top: hidden;
+                border-bottom: hidden;
+                border-right: hidden;
+                border-left: hidden; */
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            th,
+            td {
+                border: 2px solid black;
+                padding: 5px;
+                border-right: hidden;
+                border-left: hidden;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            .column {
+                float: left;
+                width: 50%;
+                padding: 10px;
+                font-size: 75%;
+                text-align: left;
+                vertical-align: bottom;
+                padding-bottom: 10px;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: '';
+                display: table;
+                clear: both;
+                font-size: 75%;
+                text-align: left;
+                vertical-align: bottom;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <image
+                id="logo"
+                src="./logo.png"
+                alt="KT Black logo"
+                style="
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 30px;
+                    width: 400px;
+                    height: inherit;
+                "></image>
+            <image
+                src="contact.png"
+                alt="KT Black contact"
+                id="contact"
+                style="
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 10px;
+                    width: 925px;
+                    height: inherit;
+                "></image>
+
+            <!-- --------------------------------------------- TABLE 1 (#, Date, Ref) ------------------------------------------------------ -->
+            <table
+                width="925"
+                style="
+                    border-top: hidden;
+                    border-bottom: hidden;
+                    border-right: hidden;
+                    border-left: hidden;
+                ">
+                <!-- <colgroup>
+                    <col span="2" />
+                    <col />
+                    <col />
+                </colgroup> -->
+                <tr style="border-bottom-style: hidden">
+                    <td
+                        id="ClientInfo"
+                        colspan="2"
+                        rowspan="4"
+                        width="350"></td>
+                    <td></td>
+                </tr>
+                <tr style="border-bottom-style: hidden">
+                    <td colspan="2"></td>
+                    <td><strong>Invoice No:{{invoiceNo}}</strong></td>
+                    <td id="InvoiceNumber"></td>
+                </tr>
+                <tr
+                    style="
+                        border-bottom-style: hidden;
+                        border-top-style: hidden;
+                    ">
+                    <td colspan="2"></td>
+                    <td style="text-align: left"><strong>Date:{{date}}</strong></td>
+                    <td id="Date" style="text-align: left"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td style="text-align: left">
+                        <strong>Reference/PO:{{reference}}</strong>
+                    </td>
+                    <td id="ReferencePO" style="text-align: left"></td>
+                </tr>
+            </table>
+
+            <!-- --------------------------------------------- TABLE 2 (INVOICE) ----------------------------------------------------------- -->
+            <table
+                width="925"
+                style="
+                    border-top: hidden;
+                    border-bottom: hidden;
+                    border-right: hidden;
+                    border-left: hidden;
+                ">
+                <colgroup>
+                    <col span="2" />
+                    <col />
+                    <col />
+                    <col />
+                </colgroup>
+                <tr style="border-bottom-style: hidden">
+                    <td colspan="5" style="text-align: center">
+                        <strong>I N V O I C E</strong>
+                    </td>
+                </tr>
+                <!-- <tr style="border-top-style: hidden">
+                    <td colspan="2" width="450"><strong>Employee</strong></td>
+                    <td style="text-align: left"><strong>Hours</strong></td>
+                    <td style="text-align: left"><strong>Rate</strong></td>
+                    <td style="text-align: left"><strong>Total</strong></td>
+                </tr>
+                <tr>
+                    <td
+                        id="EmployeeDescription"
+                        colspan="2"
+                        style="padding-top: 15px"></td>
+                    <td id="Hours" style="text-align: left"></td>
+                    <td id="Rate" style="text-align: left"></td>
+                    <td id="Total" style="text-align: left"></td>
+                </tr> -->
+            </table>
+
+            <!-- --------------------------------------------- TABLE  (Payment to) --------------------------------------------------------- -->
+
+            <table
+                id="tableData"
+                width="920"
+                style="border-top-style: hidden"
+                cellpadding="2">
+                <tr style="border-top-style: hidden">
+                    <td id="employee" width="70%"><b>Employee: {{employee}}</b></td>
+                    <td id="hours"><b>Hours: {{hours}}</b></td>
+                    <td id="rate"><b>Rate  {{rate}}</b></td>
+                    <td id="total"><b>Total  {{total}}</b></td>
+                </tr>
+            </table>
+            <table
+                width="925"
+                style="
+                    margin-top: 40px;
+                    margin-bottom: 50px;
+                    border-bottom: hidden;
+                    border-right: hidden;
+                    border-left: hidden;
+                ">
+                <tr>
+                    <td
+                        style="
+                            border-top-style: hidden;
+                            border-bottom-style: hidden;
+                        ">
+                        Remit Payment To:<br />Me<br />910 SW 7th
+                        Avenue<br />Amarillo, TX 79101
+                    </td>
+                    <td
+                        style="
+                            text-align: left;
+                            vertical-align: bottom;
+                            padding-bottom: 10px;
+                        ">
+                        Sales Tax:{{salesTax}} <span id="SalesTax"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="TotalInvoice" style="text-align: left">
+                        <strong>Total Invoice:{{totalInvoice}} </strong>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- --------------------------------------------- TABLE  (Terms:) ------------------------------------------------------------- -->
+            <table
+        id="TermsTable"
+                width="925"
+                style="
+                    border-top: hidden;
+                    border-bottom: hidden;
+                    border-right: hidden;
+                    border-left: hidden;
+                    margin-bottom: 50px;
+                ">
+                <tr
+                    style="
+                        border-bottom-style: hidden;
+                        text-align: center;
+                        font-weight: bold;
+                    ">
+                    <td>
+                        <u>Terms:</u>
+                        <span id="terms">0 Days from Date of Invoice</span
+                        ><br />&emsp;
+                    </td>
+                </tr>
+                <tr style="border-bottom-style: hidden">
+                    <td>
+                        This account receivable has been assigned to and is
+                        owned by or subject to security interest of me!
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Unpaid balances over 30 days are subject to finance
+                        charges. Invoice disputes must be reported within 14<br />days
+                        of the invoice date.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
